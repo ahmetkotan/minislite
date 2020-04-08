@@ -18,7 +18,7 @@ def extended_model():
 
 @pytest.fixture()
 def database():
-    from minislite.minilite import MiniLiteDb
+    from minislite.minislite import MiniSLiteDb
 
-    db = MiniLiteDb("test.db")
+    db = MiniSLiteDb("test.db")
     return db

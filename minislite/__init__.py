@@ -1,6 +1,6 @@
 # First Party
 from minislite.fields import DatabaseField
-from minislite.models import MiniLiteModel
-from minislite.minilite import MiniLiteDb
+from minislite.models import MiniSLiteModel
+from minislite.minislite import MiniSLiteDb
 
-__all__ = ["MiniLiteModel", "MiniLiteDb", "DatabaseField"]
+__all__ = ["MiniSLiteModel", "MiniSLiteDb", "DatabaseField"]

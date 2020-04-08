@@ -1,26 +1,26 @@
 # First Party
 import pytest
 from minislite.fields import DatabaseField
-from minislite.models import MiniLiteModel
-from minislite.minilite import MiniLiteDb
+from minislite.models import MiniSLiteModel
+from minislite.minislite import MiniSLiteDb
 from minislite.exceptions import AlreadyExistsError
 
 
-class MiniModel(MiniLiteModel):
+class MiniModel(MiniSLiteModel):
     name = DatabaseField(field_type=str)
     unknown = DatabaseField(field_type=dict)
 
 
-class ExtendedModel(MiniLiteModel):
+class ExtendedModel(MiniSLiteModel):
     name = DatabaseField(field_type=str)
     last_name = DatabaseField(field_type=str, default="last_name")
     age = DatabaseField(field_type=int, not_null=False)
 
     table_name = "extended_model"
-    unique_together = ['name', 'last_name']
+    unique_together = ["name", "last_name"]
 
 
-def test_models_initialize(database: MiniLiteDb):
+def test_models_initialize(database: MiniSLiteDb):
     database.add_model(ExtendedModel)
     database.clean_tables()
 
@@ -31,7 +31,7 @@ def test_models_initialize(database: MiniLiteDb):
     assert extended.manager
 
 
-def test_models_reload_attributes(database: MiniLiteDb):
+def test_models_reload_attributes(database: MiniSLiteDb):
     database.add_model(ExtendedModel)
     database.clean_tables()
 
@@ -46,7 +46,7 @@ def test_models_reload_attributes(database: MiniLiteDb):
     assert extended.id == 1
 
 
-def test_models_save(database: MiniLiteDb):
+def test_models_save(database: MiniSLiteDb):
     database.add_model(ExtendedModel)
     database.clean_tables()
 
@@ -70,7 +70,7 @@ def test_models_save(database: MiniLiteDb):
     assert check_updated.age == 3
 
 
-def test_models_save_2(database: MiniLiteDb):
+def test_models_save_2(database: MiniSLiteDb):
     database.add_model(ExtendedModel)
     database.clean_tables()
 

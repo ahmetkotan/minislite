@@ -5,10 +5,10 @@ from typing import Type
 
 # First Party
 from minislite.sql import SqlManager
-from minislite.models import MiniLiteModel
+from minislite.models import MiniSLiteModel
 
 
-class MiniLiteDb:
+class MiniSLiteDb:
     def __init__(self, db_path=":memory:"):
         self.db_path = db_path
         os.environ["MINILITE_DB_PATH"] = self.db_path
@@ -18,14 +18,14 @@ class MiniLiteDb:
 
         self.cursor = self.connection.cursor()
 
-    def add_model(self, model: Type[MiniLiteModel]):
+    def add_model(self, model: Type[MiniSLiteModel]):
         sql_manager = SqlManager(model)
         sql_script = sql_manager.generate_sql_script()
 
         self.cursor.executescript(sql_script)
         self.connection.commit()
 
-    def drop_model(self, model: Type[MiniLiteModel]):
+    def drop_model(self, model: Type[MiniSLiteModel]):
         table_name = model.get_table_name()
         self.cursor.execute(f"DROP TABLE {table_name}")
         self.connection.commit()

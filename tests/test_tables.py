@@ -3,19 +3,19 @@ import os
 
 # First Party
 import pytest
-from minislite.models import MiniLiteModel
+from minislite.models import MiniSLiteModel
 from minislite.tables import TableManager
-from minislite.minilite import MiniLiteDb
+from minislite.minislite import MiniSLiteDb
 from minislite.exceptions import DatabaseNotFound, RecordNotFoundError
 
 
-def test_tables_initialize(extended_model: MiniLiteModel):
+def test_tables_initialize(extended_model: MiniSLiteModel):
     os.environ.pop("MINILITE_DB_PATH")
 
     with pytest.raises(DatabaseNotFound):
         TableManager(table_name="x")
 
-    database = MiniLiteDb("test.db")
+    database = MiniSLiteDb("test.db")
     database.add_model(extended_model)
 
     TableManager(extended_model.get_table_name())
@@ -23,7 +23,7 @@ def test_tables_initialize(extended_model: MiniLiteModel):
     assert database.cursor
 
 
-def test_tables_select(extended_model: MiniLiteModel, database: MiniLiteDb):
+def test_tables_select(extended_model: MiniSLiteModel, database: MiniSLiteDb):
     database.add_model(extended_model)
     database.clean_tables()
 
@@ -44,7 +44,7 @@ def test_tables_select(extended_model: MiniLiteModel, database: MiniLiteDb):
     assert len(select) == 3
 
 
-def test_tables_insert(extended_model: MiniLiteModel, database: MiniLiteDb):
+def test_tables_insert(extended_model: MiniSLiteModel, database: MiniSLiteDb):
     database.add_model(extended_model)
     database.clean_tables()
 
@@ -54,7 +54,7 @@ def test_tables_insert(extended_model: MiniLiteModel, database: MiniLiteDb):
     assert len(extended_model.objects.all()) == 1
 
 
-def test_tables_update(extended_model: MiniLiteModel, database: MiniLiteDb):
+def test_tables_update(extended_model: MiniSLiteModel, database: MiniSLiteDb):
     database.add_model(extended_model)
     database.clean_tables()
 
@@ -74,7 +74,7 @@ def test_tables_update(extended_model: MiniLiteModel, database: MiniLiteDb):
     assert extended_model.objects.get(id=extended.id).name == "extended2"
 
 
-def test_tables_delete(extended_model: MiniLiteModel, database: MiniLiteDb):
+def test_tables_delete(extended_model: MiniSLiteModel, database: MiniSLiteDb):
     database.add_model(extended_model)
     database.clean_tables()
 

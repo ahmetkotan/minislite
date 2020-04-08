@@ -1,22 +1,22 @@
 # First Party
 from tests.test_models import MiniModel
-from minislite.minilite import MiniLiteDb
+from minislite.minislite import MiniSLiteDb
 
 
 def test_minilite_initialize():
-    db = MiniLiteDb()
+    db = MiniSLiteDb()
     assert db.cursor
 
 
 def test_minilite_add_model(mini_model: MiniModel):
-    db = MiniLiteDb()
+    db = MiniSLiteDb()
     db.add_model(mini_model)
 
-    test_models = db.cursor.execute('SELECT * FROM minimodel').fetchall()
+    test_models = db.cursor.execute("SELECT * FROM minimodel").fetchall()
     assert test_models == []
 
 
-def test_minilite_drop_model(mini_model: MiniModel, database: MiniLiteDb):
+def test_minilite_drop_model(mini_model: MiniModel, database: MiniSLiteDb):
     database.add_model(mini_model)
     database.drop_model(mini_model)
 
@@ -24,14 +24,14 @@ def test_minilite_drop_model(mini_model: MiniModel, database: MiniLiteDb):
     assert len(table_list) == 0
 
 
-def test_minilite_clean_tables(mini_model: MiniModel, database: MiniLiteDb):
+def test_minilite_clean_tables(mini_model: MiniModel, database: MiniSLiteDb):
     database.add_model(mini_model)
 
     database.cursor.execute("INSERT INTO minimodel (name) VALUES ('mini')")
     database.connection.commit()
 
     mini = dict(database.cursor.execute("SELECT * FROM minimodel").fetchone())
-    assert mini.get('name') == "mini"
+    assert mini.get("name") == "mini"
 
     database.clean_tables()
     cleaned_mini = database.cursor.execute("SELECT * FROM minimodel").fetchone()

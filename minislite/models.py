@@ -7,7 +7,7 @@ from minislite.tables import TableManager
 from minislite.objects import Objects
 
 
-class MiniLiteModel:
+class MiniSLiteModel:
     id = DatabaseField(field_type=int, auto_increment=True)
 
     table_name = None

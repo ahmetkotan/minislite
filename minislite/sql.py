@@ -3,11 +3,11 @@ from typing import List, Type
 
 # First Party
 from minislite.fields import DatabaseField
-from minislite.models import MiniLiteModel
+from minislite.models import MiniSLiteModel
 
 
 class SqlManager:
-    def __init__(self, model: Type[MiniLiteModel]):
+    def __init__(self, model: Type[MiniSLiteModel]):
         self.model = model
         self.data_types = {str: "TEXT", int: "INTEGER", bool: "INTEGER", float: "REAL"}
 
