@@ -18,7 +18,7 @@ class TableManager:
 
         self.cursor = self.connection.cursor()
 
-    def select(self, **kwargs) -> sqlite3.Cursor:
+    def select(self, order_by: str = "", limit: int = 0, **kwargs) -> sqlite3.Cursor:
         if kwargs.values():
             column_list = []
             values = []
@@ -37,6 +37,12 @@ class TableManager:
         else:
             tuple_values = ()
             query = f"SELECT * FROM {self.table_name}"
+
+        if order_by:
+            query += f" ORDER BY {order_by} ASC"
+
+        if limit:
+            query += f" LIMIT {limit}"
 
         return self.cursor.execute(query, tuple_values)
 

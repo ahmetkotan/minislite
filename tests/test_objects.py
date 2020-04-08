@@ -54,6 +54,21 @@ def test_objects_all(extended_model: ExtendedModel, database: MiniSLiteDb):
     assert len(all_extended) == 3
 
 
+def test_objects_first_last(extended_model: ExtendedModel, database: MiniSLiteDb):
+    database.add_model(extended_model)
+    database.clean_tables()
+
+    extended_model.objects.create(name="extended", last_name="model", age=1)
+    extended_model.objects.create(name="extended", last_name="model2", age=1)
+    extended_model.objects.create(name="extended", last_name="model3", age=1)
+
+    first_object = extended_model.objects.first()
+    assert first_object.last_name == "model"
+
+    last_object = extended_model.objects.last()
+    assert last_object.last_name == "model3"
+
+
 def test_objects_check_unique_together(extended_model: ExtendedModel, mini_model: MiniModel, database: MiniSLiteDb):
     database.add_model(extended_model)
     database.add_model(mini_model)

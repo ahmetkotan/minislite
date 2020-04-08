@@ -69,6 +69,9 @@ Person.objects.update(last_name="slite-updated")
 ### Filter/Get and Delete Object
 
 ```python
+first_person = Person.objects.first()
+last_person = Person.objects.last()
+
 person_objects = Person.objects.filter(last_name="slite-updated")
 # or
 # person_objects = Person.objects.all()

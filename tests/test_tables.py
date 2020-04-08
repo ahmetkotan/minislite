@@ -43,6 +43,12 @@ def test_tables_select(extended_model: MiniSLiteModel, database: MiniSLiteDb):
     select = table.select(name="extended").fetchall()
     assert len(select) == 3
 
+    first_extended = table.select(name="extended", order_by="id", limit=1).fetchone()
+    assert dict(first_extended).get("last_name") == "model1"
+
+    last_extended = table.select(name="extended", order_by="-id", limit=1).fetchone()
+    assert dict(last_extended).get("last_name") == "model3"
+
 
 def test_tables_insert(extended_model: MiniSLiteModel, database: MiniSLiteDb):
     database.add_model(extended_model)

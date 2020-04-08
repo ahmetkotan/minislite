@@ -38,6 +38,12 @@ class Objects:
     def all(self) -> List[Any]:
         return self.filter()
 
+    def first(self):
+        return self.get(order_by="id", limit=1)
+
+    def last(self):
+        return self.get(order_by="-id", limit=1)
+
     def check_unique_together(self, is_creating=False, object_id=None, **kwargs) -> bool:
         if not self.unique_together:
             return True

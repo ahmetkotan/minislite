@@ -3,7 +3,7 @@ from setuptools import setup
 
 setup(
     name="minislite",
-    version="0.9",
+    version="0.91",
     packages=["minislite"],
     url="https://github.com/ahmetkotan/minislite",
     license="",
