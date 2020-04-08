@@ -6,9 +6,12 @@ from minislite.tables import TableManager
 from minislite.exceptions import AreYouSure, AlreadyExistsError, RecordNotFoundError
 
 
-class Objects(object):
+class Objects:
     table_name = None
     unique_together = None
+
+    klass: Any
+    manager: Any
 
     def __get__(self, instance, owner):
         self.table_name = owner.get_table_name()
@@ -18,7 +21,7 @@ class Objects(object):
 
         return self
 
-    def get(self, *args, **kwargs) -> Any:
+    def get(self, **kwargs) -> Any:
         db_object = self.manager.select(**kwargs).fetchone()
         if not db_object:
             raise RecordNotFoundError("This row not found.")
@@ -26,7 +29,7 @@ class Objects(object):
         dict_object = dict(db_object)
         return self.klass(**dict_object)
 
-    def filter(self, *args, **kwargs) -> List[Any]:
+    def filter(self, **kwargs) -> List[Any]:
         db_objects = self.manager.select(**kwargs).fetchall()
 
         object_list = [self.klass(**dict(i)) for i in db_objects]
@@ -64,8 +67,8 @@ class Objects(object):
         if self.check_unique_together(*args, is_creating=True, **kwargs):  # type: ignore
             object_id = self.manager.insert(*args, **kwargs)
             return self.get(id=object_id)
-        else:
-            raise AlreadyExistsError("This object already exists.")
+
+        raise AlreadyExistsError("This object already exists.")
 
     def delete(self, i_am_sure=None, object_id=None) -> None:
         if object_id is None and i_am_sure is None:

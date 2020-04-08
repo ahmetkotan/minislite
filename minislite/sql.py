@@ -6,7 +6,7 @@ from minislite.fields import DatabaseField
 from minislite.models import MiniLiteModel
 
 
-class SqlManager(object):
+class SqlManager:
     def __init__(self, model: Type[MiniLiteModel]):
         self.model = model
         self.data_types = {

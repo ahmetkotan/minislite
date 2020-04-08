@@ -8,7 +8,7 @@ from minislite.sql import SqlManager
 from minislite.models import MiniLiteModel
 
 
-class MiniLiteDb(object):
+class MiniLiteDb:
     def __init__(self, db_path=":memory:"):
         self.db_path = db_path
         os.environ["MINILITE_DB_PATH"] = self.db_path

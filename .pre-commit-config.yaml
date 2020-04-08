@@ -21,3 +21,8 @@ repos:
             entry: py.test -v
             language: system
             pass_filenames: false
+        -   id: pylint
+            name: pylint
+            entry: pylint minislite
+            language: system
+            pass_filenames: false

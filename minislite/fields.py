@@ -1,5 +1,5 @@
 
-class DatabaseField(object):
+class DatabaseField:
 
     def __init__(self, field_type, default=None, unique=False, not_null=True, auto_increment=False) -> None:
         self.field_type = field_type

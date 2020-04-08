@@ -7,18 +7,18 @@ from minislite.tables import TableManager
 from minislite.objects import Objects
 
 
-class MiniLiteModel(object):
+class MiniLiteModel:
     id = DatabaseField(field_type=int, auto_increment=True)
 
     table_name = None
     unique_together: List[str] = []
     objects = Objects()
 
-    def __init__(self, *args, **kwargs):
-        self.reload_attributes(*args, **kwargs)
+    def __init__(self, **kwargs):
+        self.reload_attributes(**kwargs)
         self.manager = TableManager(table_name=self.get_table_name())
 
-    def reload_attributes(self, *args, **kwargs) -> None:
+    def reload_attributes(self, **kwargs) -> None:
         field_list = self.get_fields()
         for field in field_list:
             exists_attr = getattr(self, field, None)

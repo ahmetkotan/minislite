@@ -6,7 +6,7 @@ import sqlite3
 from minislite.exceptions import DatabaseNotFound
 
 
-class TableManager(object):
+class TableManager:
     def __init__(self, table_name) -> None:
         db_file = os.environ.get("MINILITE_DB_PATH", None)
         if db_file is None:
@@ -18,7 +18,7 @@ class TableManager(object):
 
         self.cursor = self.connection.cursor()
 
-    def select(self, *args, **kwargs) -> sqlite3.Cursor:
+    def select(self, **kwargs) -> sqlite3.Cursor:
         if kwargs.values():
             column_list = []
             values = []
@@ -40,7 +40,7 @@ class TableManager(object):
 
         return self.cursor.execute(query, tuple_values)
 
-    def insert(self, *args, **kwargs) -> int:
+    def insert(self, **kwargs) -> int:
         columns = ",".join(kwargs.keys())
         values = ",".join(['?' for _ in kwargs.keys()])
 
@@ -52,9 +52,9 @@ class TableManager(object):
         self.connection.commit()
         return self.cursor.lastrowid
 
-    def update(self, *args, object_id=None, **kwargs) -> None:
+    def update(self, object_id=None, **kwargs) -> None:
         if not kwargs.values():
-            return None
+            return
         column_list = []
         for key in kwargs.keys():
             set_column = f"{key} = ?"
