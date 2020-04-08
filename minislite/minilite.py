@@ -33,7 +33,7 @@ class MiniLiteDb:
     def clean_tables(self):
         table_list = self.cursor.execute("SELECT name FROM sqlite_sequence").fetchall()
         for table in table_list:
-            table_name = dict(table).get('name')
+            table_name = dict(table).get("name")
             self.cursor.execute(f"DELETE FROM {table_name}")
 
         self.connection.commit()

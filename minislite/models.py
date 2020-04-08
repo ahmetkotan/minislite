@@ -27,7 +27,7 @@ class MiniLiteModel:
             value = kwargs.get(field, exists_attr)
             setattr(self, field, value)
 
-        setattr(self, 'id', kwargs.get('id', None))
+        setattr(self, "id", kwargs.get("id", None))
 
     def save(self):
         field_list = self.get_fields()

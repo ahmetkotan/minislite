@@ -42,7 +42,7 @@ class TableManager:
 
     def insert(self, **kwargs) -> int:
         columns = ",".join(kwargs.keys())
-        values = ",".join(['?' for _ in kwargs.keys()])
+        values = ",".join(["?" for _ in kwargs.keys()])
 
         query = f"INSERT INTO {self.table_name} ({columns}) "
         query += f"VALUES ({values})"
@@ -76,7 +76,7 @@ class TableManager:
         query = f"DELETE FROM {self.table_name}"
         if object_id:
             query += " WHERE id = ?"
-            tuple_values = (object_id, )
+            tuple_values = (object_id,)
             self.cursor.execute(query, tuple_values)
         else:
             self.cursor.execute(query)

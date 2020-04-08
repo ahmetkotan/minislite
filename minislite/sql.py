@@ -9,12 +9,7 @@ from minislite.models import MiniLiteModel
 class SqlManager:
     def __init__(self, model: Type[MiniLiteModel]):
         self.model = model
-        self.data_types = {
-            str: "TEXT",
-            int: "INTEGER",
-            bool: "INTEGER",
-            float: "REAL"
-        }
+        self.data_types = {str: "TEXT", int: "INTEGER", bool: "INTEGER", float: "REAL"}
 
     def generate_sql_script(self) -> str:
         table_name = self.model.get_table_name()

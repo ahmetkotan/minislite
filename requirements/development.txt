@@ -11,3 +11,4 @@ pre-commit==2.0.1 # https://pre-commit.com/
 # Code Quality
 isort==4.3.21 # https://github.com/timothycrosley/isort
 pylint==2.4.4 # https://www.pylint.org/
+black==19.10b0  # https://github.com/psf/black
