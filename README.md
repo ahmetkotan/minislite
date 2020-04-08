@@ -103,3 +103,6 @@ from minislite.exceptions import RecordNotFoundError, AlreadyExistsError, Databa
 * **AlreadyExistsError:** Raise this exception when an object creating or saving. Check your ``unique=True`` fields and ``unique_together`` fields.
 * **DatabaseNotFound:** Cannot use TableManager if you don't initialize ``MiniSLiteDb()``
 * **AreYouSure:** Raise this exception if you want to delete all objects(``objects.delete()``) in model. Add ``i_am_sure=True`` arguments.
+
+## Development and Contribution
+See; [CONTRIBUTING.md](CONTRIBUTING..md)
