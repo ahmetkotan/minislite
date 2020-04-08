@@ -1,0 +1,12 @@
+# Testing
+pytest==5.3.5
+pytest-cov==2.8.1
+
+# mypy
+mypy==0.761 # https://github.com/python/mypy
+
+# Pre Commit for Git
+pre-commit==2.0.1 # https://pre-commit.com/
+
+# Code Quality
+isort==4.3.21 # https://github.com/timothycrosley/isort

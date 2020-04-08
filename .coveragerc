@@ -1,0 +1,8 @@
+[run]
+include = minislite/*
+
+[report]
+fail_under = 90
+
+[paths]
+source = minislite/

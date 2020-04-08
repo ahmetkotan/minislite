@@ -1,0 +1,23 @@
+repos:
+  -   repo: https://github.com/pre-commit/pre-commit-hooks
+      rev: v2.3.0
+      hooks:
+        -   id: check-merge-conflict
+        -   id: debug-statements
+        -   id: detect-private-key
+  -   repo: https://github.com/pre-commit/mirrors-isort
+      rev: 'v4.3.21'
+      hooks:
+        -   id: isort
+  -   repo: local
+      hooks:
+        -   id: mypy
+            name: mypy
+            entry: python -m mypy
+            language: system
+            pass_filenames: false
+        -   id: coverage
+            name: coverage
+            entry: py.test -v
+            language: system
+            pass_filenames: false

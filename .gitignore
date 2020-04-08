@@ -1,0 +1,17 @@
+.idea/
+
+__pycache__/
+*.pyc
+*.pyi
+*.pyx
+
+*.db
+*.sqlite
+*.sqlite3
+
+.coverage
+coverage.xml
+.pytest_cache/
+htmlcov/
+
+.mypy_cache/
