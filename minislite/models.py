@@ -43,7 +43,7 @@ class MiniSLiteModel:
 
     def delete(self):
         if self.id:
-            self.objects.delete(self.id)
+            self.objects.delete(object_id=self.id)
             self.id = None  # type: ignore
 
     @classmethod
