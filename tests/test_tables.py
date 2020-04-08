@@ -1,11 +1,12 @@
-import pytest
+# Standard Library
+import os
 
-from minislite.tables import TableManager
+# First Party
+import pytest
 from minislite.models import MiniLiteModel
+from minislite.tables import TableManager
 from minislite.minilite import MiniLiteDb
 from minislite.exceptions import DatabaseNotFound, RecordNotFoundError
-
-import os
 
 
 def test_tables_initialize(extended_model: MiniLiteModel):

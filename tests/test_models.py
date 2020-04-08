@@ -1,7 +1,7 @@
+# First Party
 import pytest
-
-from minislite.models import MiniLiteModel
 from minislite.fields import DatabaseField
+from minislite.models import MiniLiteModel
 from minislite.minilite import MiniLiteDb
 from minislite.exceptions import AlreadyExistsError
 

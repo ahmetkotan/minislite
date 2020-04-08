@@ -1,8 +1,8 @@
+# First Party
 import pytest
-
+from tests.test_models import MiniModel, ExtendedModel
 from minislite.minilite import MiniLiteDb
-from minislite.exceptions import AlreadyExistsError, RecordNotFoundError, AreYouSure
-from tests.test_models import ExtendedModel, MiniModel
+from minislite.exceptions import AreYouSure, AlreadyExistsError, RecordNotFoundError
 
 
 def test_objects_dunder_get(extended_model: ExtendedModel):

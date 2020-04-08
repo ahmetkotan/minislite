@@ -1,5 +1,6 @@
-from minislite.minilite import MiniLiteDb
+# First Party
 from tests.test_models import MiniModel
+from minislite.minilite import MiniLiteDb
 
 
 def test_minilite_initialize():
