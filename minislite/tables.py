@@ -8,7 +8,7 @@ from minislite.exceptions import DatabaseNotFound
 
 class TableManager:
     def __init__(self, table_name) -> None:
-        db_file = os.environ.get("MINILITE_DB_PATH", None)
+        db_file = os.environ.get("MINISLITE_DB_PATH", None)
         if db_file is None:
             raise DatabaseNotFound("Database not defined.")
 

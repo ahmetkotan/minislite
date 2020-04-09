@@ -11,7 +11,7 @@ from minislite.models import MiniSLiteModel
 class MiniSLiteDb:
     def __init__(self, db_path=":memory:"):
         self.db_path = db_path
-        os.environ["MINILITE_DB_PATH"] = self.db_path
+        os.environ["MINISLITE_DB_PATH"] = self.db_path
 
         self.connection = sqlite3.connect(self.db_path)
         self.connection.row_factory = sqlite3.Row

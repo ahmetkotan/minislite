@@ -108,4 +108,4 @@ from minislite.exceptions import RecordNotFoundError, AlreadyExistsError, Databa
 * **AreYouSure:** Raise this exception if you want to delete all objects(``objects.delete()``) in model. Add ``i_am_sure=True`` arguments.
 
 ## Development and Contribution
-See; [CONTRIBUTING.md](CONTRIBUTING..md)
+See; [CONTRIBUTING.md](CONTRIBUTING.md)

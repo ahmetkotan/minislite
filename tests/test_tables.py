@@ -10,7 +10,7 @@ from minislite.exceptions import DatabaseNotFound, RecordNotFoundError
 
 
 def test_tables_initialize(extended_model: MiniSLiteModel):
-    os.environ.pop("MINILITE_DB_PATH")
+    os.environ.pop("MINISLITE_DB_PATH", None)
 
     with pytest.raises(DatabaseNotFound):
         TableManager(table_name="x")
