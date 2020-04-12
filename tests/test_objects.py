@@ -2,11 +2,10 @@
 import pytest
 from tests.test_models import MiniModel, ExtendedModel
 from minislite.minislite import MiniSLiteDb
-from minislite.exceptions import AreYouSure, AlreadyExistsError, RecordNotFoundError
+from minislite.exceptions import AreYouSureError, AlreadyExistsError, RecordNotFoundError
 
 
 def test_objects_dunder_get(extended_model: ExtendedModel):
-    assert extended_model.objects.table_name == "extended_model"
     assert extended_model.objects.klass == extended_model
     assert extended_model.objects.unique_together == ["name", "last_name"]
     assert extended_model.objects.manager
@@ -135,7 +134,7 @@ def test_objects_delete(extended_model: ExtendedModel, database: MiniSLiteDb):
     extended_model.objects.create(name="extended", last_name="model2", age=2)
     extended_model.objects.create(name="extended", last_name="model3", age=3)
 
-    with pytest.raises(AreYouSure):
+    with pytest.raises(AreYouSureError):
         extended_model.objects.delete()
 
     extended_model.objects.delete(object_id=extended1.id)

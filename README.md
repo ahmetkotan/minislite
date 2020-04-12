@@ -5,6 +5,7 @@ MiniSLite is a secure and mini SQLite ORM module.
 
 ### From Pypi
 
+The script is [available on PyPI](https://pypi.org/project/minislite/). To install with pip:
 ```
 pip install minislite
 ```
@@ -51,13 +52,16 @@ database.add_model(Person)
 ### Create and Update Object
 
 ```python
-person1 = Person(name="mini", last_name="slite")
+person1 = Person(name="mini", last_name="slite")  # not created
 person1.age = 1
-person1.save()
+person1.save()  # created
 
-person2 = Person.objects.create(name="mini2", last_name="slite")
+person2 = Person.objects.create(name="mini2", last_name="slite")  # created
 person2.age = 2
-person2.save()
+person2.save()  # updated
+
+person3 = Person.objects.create(name="mini3", last_name="slite", age=10)  # created
+person4 = Person.objects.create(name="mini4", last_name="slite", age=20)  # created
 ```
 
 ### Update All Objects
@@ -82,6 +86,16 @@ person_obj = Person.objects.get(name="mini")
 person_obj.delete()
 ```
 
+**Special Filters**
+* ``gt``, ``gte``, ``lt``, ``lte`` for integer, bool and float fields
+* ``contains``, ``startswith``, ``endswith`` for string fields
+
+```python
+older_than_10 = Person.objects.filter(age__gt=10)[0]
+print(older_than_10.name)  # mini4
+```
+
+
 ### Delete All Objects
 
 ```python
@@ -98,14 +112,15 @@ database.drop_model(Person)
 ### Exceptions
 
 ```python
-from minislite.exceptions import RecordNotFoundError, AlreadyExistsError, DatabaseNotFound, \
-    AreYouSure
+from minislite.exceptions import RecordNotFoundError, AlreadyExistsError, DatabaseNotFoundError, \
+    AreYouSureError, WhereOperatorError
 ```
 
 * **RecordNotFoundError:** If you use ``objects.get()`` and that is not found in database
 * **AlreadyExistsError:** Raise this exception when an object creating or saving. Check your ``unique=True`` fields and ``unique_together`` fields.
-* **DatabaseNotFound:** Cannot use TableManager if you don't initialize ``MiniSLiteDb()``
-* **AreYouSure:** Raise this exception if you want to delete all objects(``objects.delete()``) in model. Add ``i_am_sure=True`` arguments.
+* **DatabaseNotFoundError:** Cannot use TableManager if you don't initialize ``MiniSLiteDb()``
+* **AreYouSureError:** Raise this exception if you want to delete all objects(``objects.delete()``) in model. Add ``i_am_sure=True`` arguments.
+* **WhereOperatorError:** Raise this exception if you use integer operator for string field. Or vice versa.
 
 ## Development and Contribution
 See; [CONTRIBUTING.md](CONTRIBUTING.md)

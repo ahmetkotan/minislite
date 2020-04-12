@@ -3,21 +3,19 @@ from typing import Any, List
 
 # First Party
 from minislite.tables import TableManager
-from minislite.exceptions import AreYouSure, AlreadyExistsError, RecordNotFoundError
+from minislite.exceptions import AreYouSureError, AlreadyExistsError, RecordNotFoundError
 
 
 class Objects:
-    table_name = None
     unique_together = None
 
     klass: Any
     manager: Any
 
     def __get__(self, instance, owner):
-        self.table_name = owner.get_table_name()
         self.unique_together = owner.get_unique_together()
         self.klass = owner
-        self.manager = TableManager(table_name=self.table_name)
+        self.manager = TableManager(model=owner)
 
         return self
 
@@ -78,6 +76,6 @@ class Objects:
 
     def delete(self, i_am_sure=None, object_id=None) -> None:
         if object_id is None and i_am_sure is None:
-            raise AreYouSure("Cleaning all data in tables. Are you sure? Use 'i_am_sure=True'")
+            raise AreYouSureError("Cleaning all data in tables. Are you sure? Use 'i_am_sure=True'")
 
         self.manager.delete(object_id)

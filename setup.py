@@ -1,15 +1,15 @@
-# Third Party
+# First Party
 from setuptools import setup
 
 setup(
     name="minislite",
-    version="0.91",
+    version="0.99",
     packages=["minislite"],
     url="https://github.com/ahmetkotan/minislite",
     license="",
     author="ahmetkotan",
     author_email="ahmtkotan@gmail.com",
-    description="Mini SQLite ORM",
+    description="Mini and Secure SQLite ORM",
     long_description=open("README.md").read(),
     long_description_content_type="text/markdown",
     classifiers=[

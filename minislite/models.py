@@ -16,7 +16,7 @@ class MiniSLiteModel:
 
     def __init__(self, **kwargs):
         self.reload_attributes(**kwargs)
-        self.manager = TableManager(table_name=self.get_table_name())
+        self.manager = TableManager(model=self)
 
     def reload_attributes(self, **kwargs) -> None:
         field_list = self.get_fields()

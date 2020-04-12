@@ -6,9 +6,13 @@ class AlreadyExistsError(ValueError):
     pass
 
 
-class DatabaseNotFound(ConnectionError):
+class DatabaseNotFoundError(ConnectionError):
     pass
 
 
-class AreYouSure(ValueError):
+class AreYouSureError(ValueError):
+    pass
+
+
+class WhereOperatorError(ValueError):
     pass
